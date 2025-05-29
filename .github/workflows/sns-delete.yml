@@ -38,7 +38,7 @@ jobs:
 
 
     - name: Terraform Destroy
-      working-directory: ./delete_sns
+      working-directory: ./terraform/sns/delete_sns
       run: |
         terraform destroy -var sns_topic_name=${{ github.event.inputs.sns_topic_name }} -var region=${{ github.event.inputs.region }} -auto-approve
             
