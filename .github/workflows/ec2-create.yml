@@ -1,4 +1,4 @@
-name: apply-terraform-ec2.yaml
+name: ec2-create.yml
  
 on:
 
