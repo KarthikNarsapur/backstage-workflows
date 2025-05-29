@@ -48,7 +48,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Destroy
-        working-directory: terraform/ec2/delete_ec2
+        working-directory: ./terraform/ec2/delete_ec2
         run: terraform destroy -var instanceId=${{ github.event.inputs.instanceId }} -var region=${{ github.event.inputs.region }} -auto-approve
 
  
