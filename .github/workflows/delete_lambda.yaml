@@ -1,0 +1,54 @@
+name: delete_lambda.yaml
+on:
+  workflow_dispatch:
+    inputs:
+      lambda_function_arn:
+        description: 'Gets Lambda Function ARN'
+        required: true
+
+      region:
+        description: 'AWS region'
+        required: true
+
+
+permissions:
+
+  id-token: write
+
+  contents: read
+ 
+jobs:
+    terraform_destroy:
+
+      runs-on: ubuntu-latest
+      steps:
+
+      - name: Checkout code
+
+        uses: actions/checkout@v2
+
+      - name: Assume AWS Role using OIDC
+
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+
+        with:
+
+          role-to-assume: arn:aws:iam::730335384723:role/backstage_interns_project
+
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+
+          aws-region: ${{ github.event.inputs.region }}
+
+      - name: Setup Terraform
+
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+
+        run: terraform init
+
+      - name: Terraform Destroy
+
+        run: terraform destroy -var lambda_function_arn=${{ github.event.inputs.lambda_function_arn }} -var region=${{ github.event.inputs.region }} -auto-approve
+
+ 

@@ -1,0 +1,70 @@
+name: ebs-volume
+on:
+  workflow_dispatch:
+    inputs:
+
+      region:
+        description: "AWS Region"
+        required: true
+        type: string
+
+      availabilityZone:
+        description: "Availability Zone (only for create)"
+        required: true
+        type: string
+
+      size:
+        description: "Volume Size in GiB (only for create)"
+        required: false
+        type: number
+
+      volumeType:
+        description: "Volume Type (only for create)"
+        required: false
+
+      encryption:
+        description: "Enable Encryption (true/false, only for create)"
+        required: false
+        type: boolean
+
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  manage-ebs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Assume AWS Role using OIDC
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+
+          role-to-assume: arn:aws:iam::730335384723:role/backstage_interns_project
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ github.event.inputs.region }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Apply
+        run: |
+          terraform apply -auto-approve \
+            -var region=${{ github.event.inputs.region }} \
+            -var availabilityZone=${{ github.event.inputs.availabilityZone }} \
+            -var size=${{ github.event.inputs.size }} \
+            -var volumeType=${{ github.event.inputs.volumeType }} \
+            -var encryption=${{ github.event.inputs.encryption }}
+
+      
