@@ -55,4 +55,5 @@ jobs:
       run: terraform validate
 
     - name: Terraform Apply
+      working-directory: ./terraform/alb/create_alb
       run: terraform apply -var lb_name=${{ github.event.inputs.lb_name }} -var region=${{ github.event.inputs.region }}  -var security_group=${{ github.event.inputs.security_group }} -var allowed_ports=${{ github.event.inputs.allowed_ports }} -var instance_id=${{ github.event.inputs.instance_id }} -auto-approve
