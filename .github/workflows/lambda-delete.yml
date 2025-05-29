@@ -48,7 +48,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Destroy
-
+        working-directory: ./terraform/lambda/delete_lambda
         run: terraform destroy -var lambda_function_arn=${{ github.event.inputs.lambda_function_arn }} -var region=${{ github.event.inputs.region }} -auto-approve
 
  
