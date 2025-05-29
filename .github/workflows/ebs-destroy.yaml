@@ -42,6 +42,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Destroy
+        working-directory: terraform/ebs/delete_ebs
         run: |
           terraform destroy -auto-approve \
             -var region=${{ github.event.inputs.region }} \
