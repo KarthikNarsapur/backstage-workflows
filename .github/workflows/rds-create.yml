@@ -91,7 +91,7 @@ jobs:
       run: terraform fmt
  
     - name: Terraform Validate
-      working-directory: ./create_rds
+      working-directory: ./terraform/rds/create_rds
       run: terraform validate
  
     - name: Terraform Apply
