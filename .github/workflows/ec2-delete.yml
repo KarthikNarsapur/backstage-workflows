@@ -1,4 +1,4 @@
-name: destroy-terraform-ec2.yaml
+name: ec2-delete.yml
 on:
   workflow_dispatch:
     inputs:
