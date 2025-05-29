@@ -72,6 +72,7 @@ jobs:
       run: terraform import aws_s3_bucket.my_bucket ${{ github.event.inputs.bucket_name }}
 
     - name: Terraform Destroy
+      working-directory: ./terraform/s3
       run: terraform destroy -var bucket_name=${{ github.event.inputs.bucket_name }} -var region=${{ github.event.inputs.region }} -auto-approve
 
  
