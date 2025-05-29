@@ -59,6 +59,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Apply
+        working-directory: terraform/ebs/crate_ebs
         run: |
           terraform apply -auto-approve \
             -var region=${{ github.event.inputs.region }} \
@@ -66,5 +67,6 @@ jobs:
             -var size=${{ github.event.inputs.size }} \
             -var volumeType=${{ github.event.inputs.volumeType }} \
             -var encryption=${{ github.event.inputs.encryption }}
+        
 
       
