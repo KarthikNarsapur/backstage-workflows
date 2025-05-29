@@ -55,5 +55,5 @@ jobs:
       run: terraform validate
 
     - name: Terraform Apply
-      working-directory: ./create_sns
+      working-directory: ./terraform/sns/create_sns
       run: terraform apply -var sns_topic_name=${{ github.event.inputs.sns_topic_name }} -var sns_display_name=${{ github.event.inputs.sns_display_name }}  -var region=${{ github.event.inputs.region }} -var email_address=${{ github.event.inputs.email_address }} -auto-approve
