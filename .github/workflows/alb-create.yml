@@ -1,4 +1,4 @@
-name: terraform_loadbalancer
+name: alb-create.yml
 
 on:
   workflow_dispatch:
