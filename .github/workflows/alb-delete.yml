@@ -48,7 +48,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Destroy
-
+        working-directory: ./terraform/alb/delete_alb
         run: terraform destroy -var alb_arn=${{ github.event.inputs.alb_arn }} -var region=${{ github.event.inputs.region }} -auto-approve
 
  
