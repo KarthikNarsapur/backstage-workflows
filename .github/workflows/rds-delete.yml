@@ -54,5 +54,5 @@ jobs:
         run: terraform init
 
       - name: Terraform Destroy
-        working-directory: ./delete_rds
+        working-directory: ./terraform/rds/delete_rds
         run: terraform destroy -var action=${{ github.event.inputs.action }} -var db_identifier_delete=${{ github.event.inputs.db_identifier_delete }} -var region=${{ github.event.inputs.region }} -auto-approve
