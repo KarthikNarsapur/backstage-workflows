@@ -59,7 +59,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Apply
-        working-directory: terraform/ebs/crate_ebs
+        working-directory: ./terraform/ebs/crate_ebs
         run: |
           terraform apply -auto-approve \
             -var region=${{ github.event.inputs.region }} \
