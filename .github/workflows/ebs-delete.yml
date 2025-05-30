@@ -1,4 +1,4 @@
-name: ebs-volume
+name: ebs-delete.yml
 on:
   workflow_dispatch:
     inputs:
@@ -39,6 +39,7 @@ jobs:
         
 
       - name: Terraform Init
+        working-directory: ./terraform/ebs/delete_ebs
         run: terraform init
 
       - name: Terraform Destroy
