@@ -1,4 +1,4 @@
-name: destroy_alb.yaml
+name: alb-delete.yml
 on:
   workflow_dispatch:
     inputs:
@@ -40,11 +40,10 @@ jobs:
           aws-region: ${{ github.event.inputs.region }}
 
       - name: Setup Terraform
-
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-
+        working-directory: ./terraform/alb/delete_alb
         run: terraform init
 
       - name: Terraform Destroy
