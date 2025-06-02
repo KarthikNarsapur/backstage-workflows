@@ -44,7 +44,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-
+        working-directory: ./terraform/ec2/delete_ec2
         run: terraform init
 
       - name: Terraform Destroy
