@@ -1,4 +1,4 @@
-name: lambda_terraform.yaml
+name: lambda-create.yml
 
 on:
   workflow_dispatch:
@@ -42,12 +42,15 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
+      working-directory: ./terraform/lambda/create_lambda
       run: terraform init
 
     - name: Terraform Format
+      working-directory: ./terraform/lambda/create_lambda
       run: terraform fmt
 
     - name: Terraform Validate
+      working-directory: ./terraform/lambda/create_lambda
       run: terraform validate
 
     - name: Terraform Apply
