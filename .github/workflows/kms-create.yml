@@ -1,4 +1,4 @@
-name: Create KMS Key
+name: kms-create.yml
 on:
   workflow_dispatch:
     inputs:
@@ -45,6 +45,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
+        working-directory: ./terraform/kms
         run: terraform init
 
       - name: Terraform Apply
