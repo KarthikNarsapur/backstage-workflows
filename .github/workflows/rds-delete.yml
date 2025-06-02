@@ -1,4 +1,4 @@
-name: delete_rds.yml
+name: rds-delete.yml
 on:
   workflow_dispatch:
     inputs:
@@ -50,7 +50,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        working-directory: ./delete_rds
+        working-directory: ./terraform/rds/delete_rds
         run: terraform init
 
       - name: Terraform Destroy
