@@ -1,4 +1,4 @@
-name: apply-terraform.yaml
+name: s3-create-delete.yml
 on:
   workflow_dispatch:
     inputs:
@@ -35,15 +35,19 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       
     - name: Terraform Init
+      working-directory: ./terraform/s3
       run: terraform init
       
     - name: Terraform Format
+      working-directory: ./terraform/s3
       run: terraform fmt
       
     - name: Terraform Validate
+      working-directory: ./terraform/s3
       run: terraform validate
       
     - name: Terraform Apply
+      working-directory: ./terraform/s3
       run: terraform apply -var bucket_name=${{ github.event.inputs.bucket_name }} -var region=${{ github.event.inputs.region }} -auto-approve
       
   terraform_destroy:
@@ -66,10 +70,8 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       
     - name: Terraform Init
+      working-directory: ./terraform/s3
       run: terraform init
-      
-    - name: Importing Bucket
-      run: terraform import aws_s3_bucket.my_bucket ${{ github.event.inputs.bucket_name }}
 
     - name: Terraform Destroy
       working-directory: ./terraform/s3
