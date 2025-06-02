@@ -80,15 +80,15 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-
+      working-directory: ./terraform/ec2/create_ec2
       run: terraform init
  
     - name: Terraform Format
-
+      working-directory: ./terraform/ec2/create_ec2
       run: terraform fmt
  
     - name: Terraform Validate
-
+      working-directory: ./terraform/ec2/create_ec2
       run: terraform validate
  
     - name: Terraform Apply
