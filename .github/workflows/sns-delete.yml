@@ -1,4 +1,4 @@
-name: destroy_sns
+name: sns-delete.yml
 
 on:
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      working-directory: ./delete_sns
+      working-directory: ./terraform/sns/delete_sns
       run: terraform init
 
 
