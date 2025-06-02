@@ -1,4 +1,4 @@
-name: create_sns
+name: sns-create.yml
 
 on:
   workflow_dispatch:
@@ -43,15 +43,15 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      working-directory: ./create_sns
+      working-directory: ./terraform/sns/create_sns
       run: terraform init
 
     - name: Terraform Format
-      working-directory: ./create_sns
+      working-directory: ./terraform/sns/create_sns
       run: terraform fmt
 
     - name: Terraform Validate
-      working-directory: ./create_sns
+      working-directory: ./terraform/sns/create_sns
       run: terraform validate
 
     - name: Terraform Apply
