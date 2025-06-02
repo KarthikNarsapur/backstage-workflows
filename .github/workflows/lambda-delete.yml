@@ -1,4 +1,4 @@
-name: delete_lambda.yaml
+name: lambda-delete.yml
 on:
   workflow_dispatch:
     inputs:
@@ -44,7 +44,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-
+        working-directory: ./terraform/lambda/delete_lambda
         run: terraform init
 
       - name: Terraform Destroy
