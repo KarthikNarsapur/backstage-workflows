@@ -53,15 +53,15 @@ jobs:
         
 
       - name: Terraform Init
-        working-directory: ./terraform/ebs/crate_ebs
+        working-directory: ./terraform/ebs/create_ebs
         run: terraform init
 
       - name: Terraform Validate
-        working-directory: ./terraform/ebs/crate_ebs
+        working-directory: ./terraform/ebs/create_ebs
         run: terraform validate
 
       - name: Terraform Apply
-        working-directory: ./terraform/ebs/crate_ebs
+        working-directory: ./terraform/ebs/create_ebs
         run: |
           terraform apply -auto-approve \
             -var region=${{ github.event.inputs.region }} \
