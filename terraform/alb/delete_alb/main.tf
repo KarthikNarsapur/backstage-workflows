@@ -10,7 +10,7 @@ terraform {
 terraform {
   backend "s3" {
     bucket = "backstage-interns-project"
-    key    = "project/terraform.tfstate"
+    key    = "project/alb.tfstate"
     region = "ap-south-1"
     encrypt = true
     use_lockfile = true
