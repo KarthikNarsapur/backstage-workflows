@@ -103,8 +103,6 @@ jobs:
       working-directory: ./terraform/ec2/create_ec2
       id: extract
       run: |
-        id=$(jq -r .instance_id.value tf_output.json)
-        ip=$(jq -r .public_ip.value tf_output.json)
-        echo "instance_id=$id" >> $GITHUB_OUTPUT
-        echo "public_ip=$ip" >> $GITHUB_OUTPUT
+       echo "instance_id=$(terraform output -raw instance_id)" >> $GITHUB_OUTPUT
+       echo "public_ip=$(terraform output -raw public_ip)" >> $GITHUB_OUTPUT
      
