@@ -95,3 +95,22 @@ jobs:
       working-directory: ./terraform/ec2/create_ec2
       run: terraform apply -var instance_name=${{ github.event.inputs.instance_name }} -var region=${{ github.event.inputs.region }} -var instance_type=${{ github.event.inputs.instance_type }} -var security_group=${{ github.event.inputs.security_group }} -var allowed_ports=${{ github.event.inputs.allowed_ports }} -var enable_public_ip=${{ github.event.inputs.enable_public_ip }} -auto-approve
 
+
+
+    - name: Terraform Output
+      id: tf_output
+    
+      run: |
+    
+        terraform output -json > tf_output.json
+    
+    - name: Upload Terraform Output as Artifact
+    
+      uses: actions/upload-artifact@v3
+    
+      with:
+    
+        name: tf-output
+    
+        path: tf_output.json
+     
